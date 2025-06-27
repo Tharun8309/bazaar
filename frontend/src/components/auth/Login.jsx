@@ -3,9 +3,11 @@ import { useNavigate, Link } from 'react-router-dom';
 import ErrorMessages from '../common/ErrorMessages';
 import { AuthContext } from '../../contexts/AuthContext.jsx';
 import toast from 'react-hot-toast';
+import Spinner from '../common/Spinner';
 
 const Login = () => {
   const [errorMessages, setErrorMessages] = useState([]);
+  const [loading, setLoading] = useState(false);
   const emailRef = useRef();
   const passwordRef = useRef();
   const navigate = useNavigate();
@@ -14,7 +16,7 @@ const Login = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     setErrorMessages([]);
-    
+    setLoading(true);
     const loadingToast = toast.loading('Logging in...');
     
     try {
@@ -56,6 +58,7 @@ const Login = () => {
       toast.error('Network error. Please check your connection.');
       setErrorMessages(['Network error. Please try again.']);
     }
+    setLoading(false);
   }
 
   return (
@@ -63,40 +66,43 @@ const Login = () => {
       <div className="max-w-md w-full bg-white rounded-xl shadow-lg p-8">
         <h1 className="text-3xl font-bold text-gray-900 mb-8 text-center">Log in</h1>
         <ErrorMessages errorMessages={errorMessages} />
-        
-        <form onSubmit={handleSubmit} className="space-y-6">
-          <div>
-            <label htmlFor="email" className="block text-sm font-medium text-gray-700">Email</label>
-            <input
-              type="email"
-              id="email"
-              ref={emailRef}
-              className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm px-2 py-1"
-              required
-            />
-          </div>
-          <div>
-            <label htmlFor="password" className="block text-sm font-medium text-gray-700">Password</label>
-            <input
-              type="password"
-              id="password"
-              ref={passwordRef}
-              className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm px-2 py-1"
-              required
-            />
-            <div className="mt-2 text-right">
-              <Link to="/forgot-password" className="text-xs text-indigo-600 hover:underline">Forgot password?</Link>
+        {loading ? (
+          <Spinner />
+        ) : (
+          <form onSubmit={handleSubmit} className="space-y-6">
+            <div>
+              <label htmlFor="email" className="block text-sm font-medium text-gray-700">Email</label>
+              <input
+                type="email"
+                id="email"
+                ref={emailRef}
+                className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm px-2 py-1"
+                required
+              />
             </div>
-          </div>
-          <div>
-            <button
-              type="submit"
-              className="w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
-            >
-              Log Me In
-            </button>
-          </div>
-        </form>
+            <div>
+              <label htmlFor="password" className="block text-sm font-medium text-gray-700">Password</label>
+              <input
+                type="password"
+                id="password"
+                ref={passwordRef}
+                className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm px-2 py-1"
+                required
+              />
+              <div className="mt-2 text-right">
+                <Link to="/forgot-password" className="text-xs text-indigo-600 hover:underline">Forgot password?</Link>
+              </div>
+            </div>
+            <div>
+              <button
+                type="submit"
+                className="w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+              >
+                Log Me In
+              </button>
+            </div>
+          </form>
+        )}
         <div className="mt-4 text-center text-sm text-gray-600">
           Don't have an account?{' '}
           <Link to="/signup" className="text-indigo-600 hover:underline">Sign up</Link>
