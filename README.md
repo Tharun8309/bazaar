@@ -39,26 +39,3 @@ Bazaar is a full-stack role-based e-commerce web application where **customers**
 | React Router         | Express.js         | Mongoose ORM       | Cloudinary (Image Upload) |
 | Context API + Reducers | JWT Authentication |                    |                           |
 | React Hot Toast      |                    |                    |                           |
-
----
-
-## ⚙️ Project Structure
-
-```plaintext
-bazaar/
-├── backend/
-│   ├── controllers/
-│   ├── models/
-│   ├── routers/
-│   ├── middleware/
-│   ├── server.js
-│   └── .env
-├── frontend/
-│   ├── components/
-│   ├── contexts/
-│   ├── nav/
-│   ├── App.jsx
-│   └── index.js
-├── README.md
-└── package.json
-
