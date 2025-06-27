@@ -33,7 +33,7 @@ export const SellerProvider = ({ children }) => {
     dispatch({ type: 'FETCH_START' });
     const token = localStorage.getItem('token');
     try {
-      const response = await fetch('http://localhost:3000/api/seller/products', {
+      const response = await fetch('https://bazaar-uutz.onrender.com/api/seller/products', {
         headers: { Authorization: `Bearer ${token}` },
       });
       const body = await response.json();
@@ -57,7 +57,7 @@ export const SellerProvider = ({ children }) => {
   const deleteProduct = async (productId) => {
     const token = localStorage.getItem('token');
     try {
-      const response = await fetch(`http://localhost:3000/api/seller/products/${productId}`, {
+      const response = await fetch(`https://bazaar-uutz.onrender.com/api/seller/products/${productId}`, {
         method: 'DELETE',
         headers: { Authorization: `Bearer ${token}` },
       });

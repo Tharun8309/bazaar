@@ -24,7 +24,7 @@ const Signup = () => {
     }
     const loadingToast = toast.loading('Creating your account...');
     try {
-      const res = await fetch("http://localhost:3000/api/auth/signup", {
+      const res = await fetch("https://bazaar-uutz.onrender.com/api/auth/signup", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

@@ -49,7 +49,7 @@ export const CustomerProvider = ({ children }) => {
     dispatch({ type: 'FETCH_START' });
     const token = localStorage.getItem('token');
     try {
-      const response = await fetch('http://localhost:3000/api/customer/data', {
+      const response = await fetch('https://bazaar-uutz.onrender.com/api/customer/data', {
         headers: { Authorization: `Bearer ${token}` },
       });
       const body = await response.json();
@@ -71,7 +71,7 @@ export const CustomerProvider = ({ children }) => {
   const addToCart = async (productId) => {
     const token = localStorage.getItem('token');
     try {
-      const response = await fetch(`http://localhost:3000/api/customer/cart/${productId}`, {
+      const response = await fetch(`https://bazaar-uutz.onrender.com/api/customer/cart/${productId}`, {
         method: 'POST',
         headers: { Authorization: `Bearer ${token}` },
       });
@@ -92,7 +92,7 @@ export const CustomerProvider = ({ children }) => {
   const removeFromCart = async (productId) => {
     const token = localStorage.getItem('token');
     try {
-      const response = await fetch(`http://localhost:3000/api/customer/cart/${productId}`, {
+      const response = await fetch(`https://bazaar-uutz.onrender.com/api/customer/cart/${productId}`, {
         method: 'DELETE',
         headers: { Authorization: `Bearer ${token}` },
       });
@@ -113,7 +113,7 @@ export const CustomerProvider = ({ children }) => {
   const placeOrder = async (deliveryAddress, paymentType) => {
     const token = localStorage.getItem('token');
     try {
-      const response = await fetch('http://localhost:3000/api/customer/order', {
+      const response = await fetch('https://bazaar-uutz.onrender.com/api/customer/order', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

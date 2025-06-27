@@ -16,7 +16,7 @@ const ForgotPassword = () => {
     setLoading(true);
     try {
       // 1. Check if user exists
-      const res = await fetch('http://localhost:3000/api/auth/check-email', {
+      const res = await fetch('https://bazaar-uutz.onrender.com/api/auth/check-email', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ email })
@@ -24,7 +24,7 @@ const ForgotPassword = () => {
       const data = await res.json();
       if (res.status === 200 && data.exists) {
         // 2. Send OTP
-        const otpRes = await fetch('http://localhost:3000/api/auth/send-otp', {
+        const otpRes = await fetch('https://bazaar-uutz.onrender.com/api/auth/send-otp', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({ email })
@@ -59,7 +59,7 @@ const ForgotPassword = () => {
     }
     setLoading(true);
     try {
-      const res = await fetch('http://localhost:3000/api/auth/reset-password', {
+      const res = await fetch('https://bazaar-uutz.onrender.com/api/auth/reset-password', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ email, otp, password })
